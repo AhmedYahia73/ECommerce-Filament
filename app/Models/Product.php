@@ -31,6 +31,14 @@ class Product extends Model implements HasMedia
     protected $casts = [
         'gallery' => 'array',
     ];
+    public function image()
+    {
+        return $this->belongsTo(MediaItem::class, 'image_id');
+    }
+    public function getImageUrlAttribute()
+    {
+        return $this->media?->getFirstMediaUrl() ?? null;
+    }
 
     public function category(){
         return $this->belongsTo(Category::class, 'category_id');

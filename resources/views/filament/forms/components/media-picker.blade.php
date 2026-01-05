@@ -10,7 +10,7 @@
                     :class="selected == '{{ $item->id }}' ? 'border-primary-500 ring-2 ring-primary-500/20 shadow-lg' : 'border-gray-200 hover:border-primary-300 hover:shadow-md shadow-sm'"
                 >
                     <img 
-                        src="{{ $item->getUrl() }}" 
+                        src="{{ url('storage/' $item->collection_name . '/' . $item->file_name) }}" 
                         class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                         alt="{{ $item->file_name }}"
                         loading="lazy"

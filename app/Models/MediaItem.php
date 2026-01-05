@@ -1,12 +1,15 @@
 <?php
-
 namespace App\Models;
 
-// استيراد موديل Spatie الأساسي
-use Spatie\MediaLibrary\MediaCollections\Models\Media as SpatieMedia;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia; // السطر المطلوب 1
+use Spatie\MediaLibrary\InteractsWithMedia; // السطر المطلوب 2
 
-class MediaItem extends SpatieMedia
+// تأكد من إضافة "implements HasMedia" بعد اسم الكلاس
+class MediaItem extends Model implements HasMedia 
 {
+    protected $table = 'media';
     // لا تحتاج لتعريف $table أو $fillable هنا
     // لأن الكلاس الأب (SpatieMedia) يعرفها مسبقاً
+  use InteractsWithMedia;
 }
