@@ -17,6 +17,7 @@ use Filament\Forms\Components\ViewField;
 
 use Filament\Actions\Action;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Filament\Forms\Set;
 
 class ProductForm
 {
@@ -73,27 +74,31 @@ class ProductForm
                 ->rows(7),
 // حقل لرفع صورة واحدة
 // هذا الحقل سيسمح لك برفع صورة جديدة أو اختيار صورة موجودة
-TextInput::make('image_url')
-    ->label('Product Image')
-    ->suffixAction(
-        Action::make('selectImage')
-            ->icon('heroicon-m-photo')
-            ->label('Select from Media')
-            ->modalHeading('Select Media Item')
-            ->modalWidth('4xl')
-            ->form([
-                ViewField::make('media_picker')
-                    ->view('filament.forms.components.media-picker')
-            ])
-            ->action(function (array $data, Set $set) {
-                if (isset($data['media_picker'])) {
-                    $mediaItem = \App\Models\MediaItem::find($data['media_picker']);
-                    if ($mediaItem) {
-                        $set('image_url', $mediaItem->getUrl());
-                    }
-                }
-            })
-        ),
+// TextInput::make('image_url')
+//     ->label('Product Image')
+//     ->suffixAction(
+//         Action::make('selectImage')
+//             ->icon('heroicon-m-photo')
+//             ->label('Select from Media')
+//             ->modalHeading('Select Media Item')
+//             ->modalWidth('4xl')
+//             ->modalSubmitActionLabel('Select Image')
+//             ->modalCancelActionLabel('Cancel')
+//             ->form([
+//                 ViewField::make('media_picker')
+//                     ->view('filament.forms.components.media-picker')
+//             ])
+//             ->action(function (array $data, Action $action) {
+//                 if (isset($data['media_picker'])) {
+//                     $mediaItem = \App\Models\MediaItem::find($data['media_picker']);
+//                     if ($mediaItem) {
+//                         $action->fillForm([
+//                             'image_url' => $mediaItem->getUrl(),
+//                         ]);
+//                     }
+//                 }
+//             })
+//     ),
 
                 Select::make('category_id')
                 ->label('Category')
