@@ -23,7 +23,7 @@
                         <div class="aspect-square bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
                             @if(str_starts_with($file['mime_type'], 'image/'))
                                 <img 
-                                    src="{{ Storage::disk($file['disk'])->url($file['id'] . '/' . $file['file_name']) }}" 
+                                    src="{{ Storage::disk($file['disk'])->url($file['collection_name'] . '/' . $file['file_name']) }}" 
                                     alt="{{ $file['name'] }}"
                                     class="w-full h-full object-cover"
                                 />
@@ -60,7 +60,7 @@
                         <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                             <!-- View/Download -->
                             <a 
-                                href="{{ Storage::disk($file['disk'])->url($file['id'] . '/' . $file['file_name']) }}" 
+                                href="{{ Storage::disk($file['disk'])->url($file['collection_name'] . '/' . $file['file_name']) }}" 
                                 target="_blank"
                                 class="p-2 bg-white dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
                                 title="View/Download"

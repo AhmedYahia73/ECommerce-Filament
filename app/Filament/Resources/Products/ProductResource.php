@@ -7,6 +7,7 @@ use App\Filament\Resources\Products\Pages\EditProduct;
 use App\Filament\Resources\Products\Pages\ListProducts;
 use App\Filament\Resources\Products\Schemas\ProductForm;
 use App\Filament\Resources\Products\Tables\ProductsTable;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Models\Product;
 use BackedEnum;
 use Filament\Resources\Resource;
