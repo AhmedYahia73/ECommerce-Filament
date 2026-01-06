@@ -9,4 +9,5 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Setting extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use \BezhanSalleh\FilamentShield\Traits\HasPageShield;
 }

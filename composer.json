@@ -8,13 +8,16 @@
     "require": {
         "php": "^8.2",
         "awcodes/filament-curator": "3.5",
+        "bezhansalleh/filament-shield": "^4.0",
+        "eightynine/filament-excel-import": "^4.0",
         "filament/filament": "~4.0",
         "filament/spatie-laravel-media-library-plugin": "4.0",
         "filament/spatie-laravel-settings-plugin": "4.0",
         "hugomyb/filament-media-action": "4.1",
         "joaopaulolndev/filament-edit-profile": "2.0",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "pxlrbt/filament-excel": "3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

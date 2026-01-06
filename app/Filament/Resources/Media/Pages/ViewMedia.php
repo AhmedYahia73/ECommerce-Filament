@@ -101,7 +101,7 @@ class ViewMedia extends ViewRecord implements HasForms
                         $media->save();
                         
                         // نقل الملف إلى المكان النهائي
-                        $finalPath = $media->id . '/' . $fileName;
+                        $finalPath = $this->folder . '/' . $fileName;
                         Storage::disk($disk)->move($filePath, $finalPath);
                     }
                     

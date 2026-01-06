@@ -12,12 +12,15 @@ use Illuminate\Support\Facades\Storage;
 use Filament\Models\Contracts\HasAvatar;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
     use InteractsWithMedia;
+    use HasRoles;
+    use \BezhanSalleh\FilamentShield\Traits\HasPageShield;
 
     /**
      * The attributes that are mass assignable.

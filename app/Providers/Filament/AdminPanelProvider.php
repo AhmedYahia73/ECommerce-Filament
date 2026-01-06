@@ -39,6 +39,7 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => $color ?? Color::Amber,
             ])
             ->plugins([
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
                 FilamentEditProfilePlugin::make()
                     // الرابط (URL) الخاص بصفحة البروفايل، مثلاً: admin/my-profile
                     ->slug('my-profile')

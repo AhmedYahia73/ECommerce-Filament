@@ -11,6 +11,9 @@ use Filament\Tables\Columns\ToggleColumn;
 use App\Filament\Resources\Products\ProductResource;
 use Filament\Actions\Action;
 use Filament\Tables\Columns\ImageColumn; 
+use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Columns\Column;
 
 class CategoriesTable
 {
@@ -51,6 +54,18 @@ class CategoriesTable
                         ],
                     ],
                 ]))
+            ])
+            
+            ->headerActions([ 
+                ExportAction::make('export')
+                ->exports([
+                    ExcelExport::make()
+                        ->withColumns([ 
+                            Column::make('id')->heading('ID'),
+                            Column::make('name')->heading('Category Name'),
+                            Column::make('status')->heading('Status'),
+                        ])
+                ])
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

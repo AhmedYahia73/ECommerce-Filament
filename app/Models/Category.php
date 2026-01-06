@@ -9,6 +9,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Category extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use \BezhanSalleh\FilamentShield\Traits\HasPageShield;
 
     protected $fillable = [
         'name',

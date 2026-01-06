@@ -9,6 +9,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Product extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use \BezhanSalleh\FilamentShield\Traits\HasPageShield;
 
     protected $fillable = [
         'name',
@@ -30,11 +31,7 @@ class Product extends Model implements HasMedia
 
     protected $casts = [
         'gallery' => 'array',
-    ];
-    public function image()
-    {
-        return $this->belongsTo(MediaItem::class, 'image_id');
-    }
+    ]; 
     public function getImageUrlAttribute()
     {
         return $this->media?->getFirstMediaUrl() ?? null;

@@ -9,6 +9,9 @@ use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn; 
 use Filament\Tables\Columns\ImageColumn; 
 use Filament\Forms\Components\FileUpload;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+use pxlrbt\FilamentExcel\Columns\Column;
 use Filament\Actions\Action;
 
 class ProductsTable
@@ -57,6 +60,47 @@ class ProductsTable
                     $record->update($data);
                 })
                 ->modalSubmitActionLabel('Save Changes')
+            ])
+            
+            ->headerActions([ 
+                ExportAction::make('export')
+                ->exports([
+                    ExcelExport::make()
+                        ->withColumns([ 
+                            Column::make('name')->heading('Product Name'),
+                            Column::make('description')->heading('Description'),
+                            Column::make('price')->heading('Price'),
+                            Column::make('category_id')->heading('Category ID'),
+                            Column::make('unit_id')->heading('Unit ID'),
+                            Column::make('short_description')->heading('Short Description'),
+                            Column::make('offer_price')->heading('Offer Price'),
+                            Column::make('start_date')->heading('Start Date'),
+                            Column::make('end_date')->heading('End Date'),
+                            Column::make('quantity')->heading('Quantity'),
+                            Column::make('quantity_at_packet')->heading('Quantity AT Packet'),
+                        ])
+                        ])
+                    ->label('Export Data')
+                    ,
+                    ExportAction::make('NEW_export')
+                    ->exports([
+                        ExcelExport::make()
+                        ->withColumns([ 
+                            Column::make('name')->heading('Product Name'),
+                            Column::make('description')->heading('Description'),
+                            Column::make('price')->heading('Price'),
+                            Column::make('category_id')->heading('Category ID'),
+                            Column::make('unit_id')->heading('Unit ID'),
+                            Column::make('short_description')->heading('Short Description'),
+                            Column::make('offer_price')->heading('Offer Price'),
+                            Column::make('start_date')->heading('Start Date'),
+                            Column::make('end_date')->heading('End Date'),
+                            Column::make('quantity')->heading('Quantity'),
+                            Column::make('quantity_at_packet')->heading('Quantity AT Packet'),
+                        ])
+                        ->modifyQueryUsing(fn ($query) => $query->where('id', 0))
+                ])
+                ->label('Export Empty File')
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
