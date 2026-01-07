@@ -27,46 +27,39 @@ class MediaTable
         return $table 
         ->query(
             Media::query()
-                ->selectRaw('MIN(id) as id, collection_name, COUNT(*) as files_count, MAX(created_at) as latest_file')
-                ->groupBy('collection_name')
+            ->selectRaw('MIN(id) as id, collection_name, COUNT(*) as files_count, MAX(created_at) as latest_file')
+            ->groupBy('collection_name')
         )
-        ->columns([
-            IconColumn::make('icon')
-                ->icon('heroicon-o-folder')
-                ->size('lg')
-                ->color('warning'),
-            
+        ->columns([ 
             TextColumn::make('collection_name')
-                ->label('Folder Name')
-                ->searchable()
-                ->sortable()
+                ->label("Folders")
+                ->formatStateUsing(fn ($state, $record) => "{$state} ({$record->files_count})") 
+                ->color('warning')
+                ->color('yellow')
                 ->weight('bold')
-                ->size('lg'),
-            
-            TextColumn::make('files_count')
-                ->label('Files')
-                ->badge()
-                ->color('info')
-                ->suffix(' files'),
-            
-            TextColumn::make('latest_file')
-                ->label('Last Updated')
-                ->dateTime()
-                ->sortable(),
+                ->icon('heroicon-s-folder')
+                ->iconColor('info')
+                // نربط العمود بالأكشن
+                ->action(
+                    Action::make('view_files')
+                    ->label(fn ($record) => $record->collection_name)
+                    ->icon('heroicon-s-folder')
+                    ->color('yellow')
+                    ->badge(fn ($record) => $record->files_count)
+                    ->badgeColor('info')
+                    ->modalContent(fn ($record) => view('filament.resources.media-folder.pages.manage-folder-files', [
+                        'files' => Media::where('collection_name', $record->collection_name)
+                                    ->where('file_name', '!=', '.placeholder')
+                                    ->get(),
+                        'folder' => $record->collection_name
+                    ]))
+                    ->modalSubmitAction(false) // لإخفاء زر الحفظ في المودال
+                    ->modalWidth('8xl'), 
+                )
         ])
         ->actions([
-            Action::make('view_files')
-                ->label('View Files')
-                ->icon('heroicon-o-eye')
-                ->modalContent(fn ($record) => view('filament.resources.media-folder.pages.manage-folder-files', [
-                    'files' => Media::where('collection_name', $record->collection_name)
-                                ->where('file_name', '!=', '.placeholder')
-                                ->get(),
-                    'folder' => $record->collection_name
-                ]))
-                ->modalSubmitAction(false) // لإخفاء زر الحفظ في المودال
-                ->modalWidth('7xl'), // جعل النافذة واسعة لعرض الصور
-            ]);
+           // جعل النافذة واسعة لعرض الصور
+        ]);
     }
      
 }

@@ -71,4 +71,5 @@ class MediaResource extends Resource
     {
         return 'collection_name';
     }
+    
 }

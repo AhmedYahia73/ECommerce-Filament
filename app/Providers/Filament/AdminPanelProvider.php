@@ -23,6 +23,7 @@ use Filament\Actions\Action;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 use App\Models\Setting;
 use App\Settings\FooterSettings;
+use App\Filament\Resources\Media\Pages\MediaFolderPage;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -37,6 +38,11 @@ class AdminPanelProvider extends PanelProvider
             ->login() 
             ->colors([
                 'primary' => $color ?? Color::Amber,
+                'info' => Color::Blue,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
+                'danger' => Color::Rose,
+                'yellow' => "#FFFF33",
             ])
             ->plugins([
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make(),
@@ -86,7 +92,8 @@ class AdminPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
-                Dashboard::class,
+                Dashboard::class, 
+                MediaFolderPage::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([

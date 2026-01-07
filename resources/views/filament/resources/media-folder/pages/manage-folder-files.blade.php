@@ -1,5 +1,7 @@
 <x-filament-panels::page>
-    <div class="space-y-6">
+ <a href="{{ \App\Filament\Resources\Media\Pages\MediaFolderPage::getUrl(['folder' => $folder]) }}">
+    Open Media Folder
+</a>
         @if(empty($files))
             <div class="text-center py-12">
                 <div class="flex justify-center mb-4">

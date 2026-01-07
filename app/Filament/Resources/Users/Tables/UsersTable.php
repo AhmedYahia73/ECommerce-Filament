@@ -19,7 +19,6 @@ class UsersTable
                 ImageColumn::make('avatar_url')
                 ->label('image')
                 ->circular() // لجعل الصورة دائرية (اختياري)
-                ->disk('public') // تأكد من مطابقة الـ Disk المستخدم في الـ Upload
                 ->width(50) // تحديد عرض الصورة في الجدول
                 ->height(50),
                 TextColumn::make('email'), 
